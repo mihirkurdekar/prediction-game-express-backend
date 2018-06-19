@@ -2,19 +2,20 @@ import mysql from 'mysql';
 
 export class Connection {
 
-    private static connection: mysql.Connection;
+    private static pool: mysql.Pool;
 
-    static getConnection(): mysql.Connection {
-        if (this.connection && this.connection != null) {
+    constructor() {
 
-        } else {
-            this.connection = mysql.createConnection({
+    }
+    static getConnectionPool(): mysql.Pool {
+        if (!this.pool || this.pool == null) {
+            this.pool = mysql.createPool({
                 host: '',
                 user: '',
                 password: '',
-                database: 'worldcup'
+                database: ''
             });
         }
-        return this.connection;
+        return this.pool;
     }
 }
