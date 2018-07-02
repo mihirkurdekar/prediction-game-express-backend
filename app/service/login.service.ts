@@ -11,7 +11,7 @@ export class LoginService {
                     if (err) { // error
                         observer.error(err);
                     }
-                    connection.query("SELECT username FROM `users` WHERE `username`='" + user.username + "' AND `password`='" + user.password + "';",
+                    connection.query("SELECT username FROM `users` WHERE BINARY `username`='" + user.username + "' AND BINARY `password`='" + user.password + "';",
                         function (err: any, result: any, fields: any) {
                             if (err) { // error
                                 observer.error(err);
