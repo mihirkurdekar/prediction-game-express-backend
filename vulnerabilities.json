@@ -1,0 +1,430 @@
+{
+  "data": {
+    "repository": {
+      "vulnerabilityAlerts": {
+        "nodes": [
+          {
+            "createdAt": "2019-06-05T06:12:55Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "js-yaml"
+              },
+              "advisory": {
+                "description": "Versions of `js-yaml` prior to 3.13.1 are vulnerable to Code Injection. The `load()` function may execute arbitrary code injected through a malicious YAML file. Objects that have `toString` as key, JavaScript code as value and are used as explicit mapping keys allow attackers to execute the supplied code through the `load()` function. The `safeLoad()` function is unaffected.\n\nAn example payload is \n`{ toString: !<tag:yaml.org,2002:js/function> 'function (){return Date.now()}' } : 1` \nwhich returns the object \n{\n  \"1553107949161\": 1\n}\n\n\n## Recommendation\n\nUpgrade to version 3.13.1."
+              }
+            }
+          },
+          {
+            "createdAt": "2019-06-05T22:06:24Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "js-yaml"
+              },
+              "advisory": {
+                "description": "Versions of `js-yaml` prior to 3.13.0 are vulnerable to Denial of Service. By parsing a carefully-crafted YAML file, the node process stalls and may exhaust system resources leading to a Denial of Service.\n\n\n## Recommendation\n\nUpgrade to version 3.13.0."
+              }
+            }
+          },
+          {
+            "createdAt": "2019-08-28T00:54:47Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "mixin-deep"
+              },
+              "advisory": {
+                "description": "Versions of `mixin-deep` prior to 2.0.1 or 1.3.2 are vulnerable to Prototype Pollution. The `mixinDeep` function fails to validate which Object properties it updates. This allows attackers to modify the prototype of Object, causing the addition or modification of an existing property on all objects.\n\n\n## Recommendation\n\nIf you are using `mixin-deep` 2.x, upgrade to version 2.0.1 or later.\nIf you are using `mixin-deep` 1.x, upgrade to version 1.3.2 or later."
+              }
+            }
+          },
+          {
+            "createdAt": "2019-08-28T00:54:48Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "set-value"
+              },
+              "advisory": {
+                "description": "Versions of `set-value` prior to 3.0.1 or 2.0.1 are vulnerable to Prototype Pollution. The `set` function fails to validate which Object properties it updates. This allows attackers to modify the prototype of Object, causing the addition or modification of an existing property on all objects.\n\n\n\n\n## Recommendation\n\nIf you are using `set-value` 3.x, upgrade to version 3.0.1 or later.\nIf you are using `set-value` 2.x, upgrade to version 2.0.1 or later."
+              }
+            }
+          },
+          {
+            "createdAt": "2020-04-01T03:50:00Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "kind-of"
+              },
+              "advisory": {
+                "description": "Versions of `kind-of` 6.x prior to 6.0.3 are vulnerable to a Validation Bypass. A maliciously crafted object can alter the result of the type check, allowing attackers to bypass the type checking validation. \n\n\n## Recommendation\n\nUpgrade to versions 6.0.3 or later."
+              }
+            }
+          },
+          {
+            "createdAt": "2020-04-04T03:53:16Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "minimist"
+              },
+              "advisory": {
+                "description": "Affected versions of `minimist` are vulnerable to prototype pollution. Arguments are not properly sanitized, allowing an attacker to modify the prototype of `Object`, causing the addition or modification of an existing property that will exist on all objects.  \nParsing the argument `--__proto__.y=Polluted` adds a `y` property with value `Polluted` to all objects. The argument `--__proto__=Polluted` raises and uncaught error and crashes the application.  \nThis is exploitable if attackers have control over the arguments being passed to `minimist`.\n\n\n## Recommendation\n\nUpgrade to versions 0.2.1, 1.2.3 or later."
+              }
+            }
+          },
+          {
+            "createdAt": "2020-08-17T18:46:10Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "dot-prop"
+              },
+              "advisory": {
+                "description": "Prototype pollution vulnerability in dot-prop npm package versions before 4.2.1 and versions 5.x before 5.1.1 allows an attacker to add arbitrary properties to JavaScript language constructs such as objects."
+              }
+            }
+          },
+          {
+            "createdAt": "2020-12-10T20:55:28Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "ini"
+              },
+              "advisory": {
+                "description": "### Overview\nThe `ini` npm package before version 1.3.6 has a Prototype Pollution vulnerability.\n\nIf an attacker submits a malicious INI file to an application that parses it with `ini.parse`, they will pollute the prototype on the application. This can be exploited further depending on the context.\n\n### Patches\n\nThis has been patched in 1.3.6.\n\n### Steps to reproduce\n\npayload.ini\n```\n[__proto__]\npolluted = \"polluted\"\n```\n\npoc.js:\n```\nvar fs = require('fs')\nvar ini = require('ini')\n\nvar parsed = ini.parse(fs.readFileSync('./payload.ini', 'utf-8'))\nconsole.log(parsed)\nconsole.log(parsed.__proto__)\nconsole.log(polluted)\n```\n\n```\n> node poc.js\n{}\n{ polluted: 'polluted' }\n{ polluted: 'polluted' }\npolluted\n```"
+              }
+            }
+          },
+          {
+            "createdAt": "2021-08-10T18:28:15Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "path-parse"
+              },
+              "advisory": {
+                "description": "Affected versions of npm package `path-parse` are vulnerable to Regular Expression Denial of Service (ReDoS) via splitDeviceRe, splitTailRe, and splitPathRe regular expressions. ReDoS exhibits polynomial worst-case time complexity."
+              }
+            }
+          },
+          {
+            "createdAt": "2022-02-09T22:54:35Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "undefsafe"
+              },
+              "advisory": {
+                "description": "undefsafe before 2.0.3 is vulnerable to Prototype Pollution. The 'a' function could be tricked into adding or modifying properties of Object.prototype using a `__proto__` payload."
+              }
+            }
+          },
+          {
+            "createdAt": "2022-06-22T00:13:40Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "got"
+              },
+              "advisory": {
+                "description": "The got package before 11.8.5 and 12.1.0 for Node.js allows a redirect to a UNIX socket."
+              }
+            }
+          },
+          {
+            "createdAt": "2022-11-02T21:58:53Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "minimatch"
+              },
+              "advisory": {
+                "description": "A vulnerability was found in the minimatch package. This flaw allows a Regular Expression Denial of Service (ReDoS) when calling the braceExpand function with specific arguments, resulting in a Denial of Service."
+              }
+            }
+          },
+          {
+            "createdAt": "2022-12-02T05:12:54Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "decode-uri-component"
+              },
+              "advisory": {
+                "description": "decode-uri-component 0.2.0 is vulnerable to Improper Input Validation resulting in DoS."
+              }
+            }
+          },
+          {
+            "createdAt": "2022-12-07T03:57:28Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "qs"
+              },
+              "advisory": {
+                "description": "qs before 6.10.3 allows attackers to cause a Node process hang because an `__ proto__` key can be used. In many typical web framework use cases, an unauthenticated remote attacker can place the attack payload in the query string of the URL that is used to visit the application, such as `a[__proto__]=b&a[__proto__]&a[length]=100000000`. The fix was backported to qs 6.9.7, 6.8.3, 6.7.3, 6.6.1, 6.5.3, 6.4.1, 6.3.3, and 6.2.4."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-02-27T23:44:21Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "minimist"
+              },
+              "advisory": {
+                "description": "Minimist prior to 1.2.6 and 0.2.4 is vulnerable to Prototype Pollution via file `index.js`, function `setKey()` (lines 69-95)."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:02Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "tar"
+              },
+              "advisory": {
+                "description": "Versions of `tar` prior to 4.4.2 for 4.x and 2.2.2 for 2.x are vulnerable to Arbitrary File Overwrite. Extracting tarballs containing a hardlink to a file that already exists in the system, and a file that matches the hardlink will overwrite the system's file with the contents of the extracted file.\n\n\n## Recommendation\n\nFor tar 4.x, upgrade to version 4.4.2 or later.\nFor tar 2.x, upgrade to version 2.2.2 or later."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:02Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "minimist"
+              },
+              "advisory": {
+                "description": "Affected versions of `minimist` are vulnerable to prototype pollution. Arguments are not properly sanitized, allowing an attacker to modify the prototype of `Object`, causing the addition or modification of an existing property that will exist on all objects.  \nParsing the argument `--__proto__.y=Polluted` adds a `y` property with value `Polluted` to all objects. The argument `--__proto__=Polluted` raises and uncaught error and crashes the application.  \nThis is exploitable if attackers have control over the arguments being passed to `minimist`.\n\n\n## Recommendation\n\nUpgrade to versions 0.2.1, 1.2.3 or later."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:03Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "chownr"
+              },
+              "advisory": {
+                "description": "A TOCTOU issue in the chownr package before 1.1.0 for Node.js 10.10 could allow a local attacker to trick it into descending into unintended directories via symlink attacks."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:03Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "tar"
+              },
+              "advisory": {
+                "description": "### Impact\n\nArbitrary File Creation, Arbitrary File Overwrite, Arbitrary Code Execution\n\n`node-tar` aims to guarantee that any file whose location would be modified by a symbolic link is not extracted. This is, in part, achieved by ensuring that extracted directories are not symlinks.  Additionally, in order to prevent unnecessary `stat` calls to determine whether a given path is a directory, paths are cached when directories are created.\n\nThis logic was insufficient when extracting tar files that contained both a directory and a symlink with the same name as the directory. This order of operations resulted in the directory being created and added to the `node-tar` directory cache. When a directory is present in the directory cache, subsequent calls to mkdir for that directory are skipped. However, this is also where `node-tar` checks for symlinks occur.\n\nBy first creating a directory, and then replacing that directory with a symlink, it was thus possible to bypass `node-tar` symlink checks on directories, essentially allowing an untrusted tar file to symlink into an arbitrary location and subsequently extracting arbitrary files into that location, thus allowing arbitrary file creation and overwrite.\n\nThis issue was addressed in releases 3.2.3, 4.4.15, 5.0.7 and 6.1.2.\n\n### Patches\n\n3.2.3 || 4.4.15 || 5.0.7 || 6.1.2\n\n### Workarounds\n\nUsers may work around this vulnerability without upgrading by creating a custom `filter` method which prevents the extraction of symbolic links.\n\n```js\nconst tar = require('tar')\n\ntar.x({\n  file: 'archive.tgz',\n  filter: (file, entry) => {\n    if (entry.type === 'SymbolicLink') {\n      return false\n    } else {\n      return true\n    }\n  }\n})\n```\n\nUsers are encouraged to upgrade to the latest patch versions, rather than attempt to sanitize tar input themselves."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:03Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "tar"
+              },
+              "advisory": {
+                "description": "### Impact\n\nArbitrary File Creation, Arbitrary File Overwrite, Arbitrary Code Execution\n\n`node-tar` aims to prevent extraction of absolute file paths by turning absolute paths into relative paths when the `preservePaths` flag is not set to `true`. This is achieved by stripping the absolute path root from any absolute file paths contained in a tar file. For example `/home/user/.bashrc` would turn into `home/user/.bashrc`. \n\nThis logic was insufficient when file paths contained repeated path roots such as `////home/user/.bashrc`. `node-tar` would only strip a single path root from such paths. When given an absolute file path with repeating path roots, the resulting path (e.g. `///home/user/.bashrc`) would still resolve to an absolute path, thus allowing arbitrary file creation and overwrite. \n\n### Patches\n\n3.2.2 || 4.4.14 || 5.0.6 || 6.1.1\n\nNOTE: an adjacent issue [CVE-2021-32803](https://github.com/npm/node-tar/security/advisories/GHSA-r628-mhmh-qjhw) affects this release level. Please ensure you update to the latest patch levels that address CVE-2021-32803 as well if this adjacent issue affects your `node-tar` use case.\n\n### Workarounds\n\nUsers may work around this vulnerability without upgrading by creating a custom `onentry` method which sanitizes the `entry.path` or a `filter` method which removes entries with absolute paths.\n\n```js\nconst path = require('path')\nconst tar = require('tar')\n\ntar.x({\n  file: 'archive.tgz',\n  // either add this function...\n  onentry: (entry) => {\n    if (path.isAbsolute(entry.path)) {\n      entry.path = sanitizeAbsolutePathSomehow(entry.path)\n      entry.absolute = path.resolve(entry.path)\n    }\n  },\n\n  // or this one\n  filter: (file, entry) => {\n    if (path.isAbsolute(entry.path)) {\n      return false\n    } else {\n      return true\n    }\n  }\n})\n```\n\nUsers are encouraged to upgrade to the latest patch versions, rather than attempt to sanitize tar input themselves."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:04Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "tar"
+              },
+              "advisory": {
+                "description": "### Impact\n\nArbitrary File Creation, Arbitrary File Overwrite, Arbitrary Code Execution\n\nnode-tar aims to guarantee that any file whose location would be outside of the extraction target directory is not extracted. This is, in part, accomplished by sanitizing absolute paths of entries within the archive, skipping archive entries that contain `..` path portions, and resolving the sanitized paths against the extraction target directory.\n\nThis logic was insufficient on Windows systems when extracting tar files that contained a path that was not an absolute path, but specified a drive letter different from the extraction target, such as `C:some\\path`.  If the drive letter does not match the extraction target, for example `D:\\extraction\\dir`, then the result of `path.resolve(extractionDirectory, entryPath)` would resolve against the current working directory on the `C:` drive, rather than the extraction target directory.\n\nAdditionally, a `..` portion of the path could occur immediately after the drive letter, such as `C:../foo`, and was not properly sanitized by the logic that checked for `..` within the normalized and split portions of the path.\n\nThis only affects users of `node-tar` on Windows systems.\n\n### Patches\n\n4.4.18 || 5.0.10 || 6.1.9\n\n### Workarounds\n\nThere is no reasonable way to work around this issue without performing the same path normalization procedures that node-tar now does.\n\nUsers are encouraged to upgrade to the latest patched versions of node-tar, rather than attempt to sanitize paths themselves.\n\n### Fix\n\nThe fixed versions strip path roots from all paths prior to being resolved against the extraction target folder, even if such paths are not \"absolute\".\n\nAdditionally, a path starting with a drive letter and then two dots, like `c:../`, would bypass the check for `..` path portions.  This is checked properly in the patched versions.\n\nFinally, a defense in depth check is added, such that if the `entry.absolute` is outside of the extraction taret, and we are not in preservePaths:true mode, a warning is raised on that entry, and it is skipped.  Currently, it is believed that this check is redundant, but it did catch some oversights in development.\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:04Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "set-value"
+              },
+              "advisory": {
+                "description": "This affects the package `set-value`. A type confusion vulnerability can lead to a bypass of CVE-2019-10747 when the user-provided keys used in the path parameter are arrays."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:04Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "ansi-regex"
+              },
+              "advisory": {
+                "description": "ansi-regex is vulnerable to Inefficient Regular Expression Complexity which could lead to a denial of service when parsing invalid ANSI escape codes.\n\n**Proof of Concept**\n```js\nimport ansiRegex from 'ansi-regex';\nfor(var i = 1; i <= 50000; i++) {\n    var time = Date.now();\n    var attack_str = \"\\u001B[\"+\";\".repeat(i*10000);\n    ansiRegex().test(attack_str)\n    var time_cost = Date.now() - time;\n    console.log(\"attack_str.length: \" + attack_str.length + \": \" + time_cost+\" ms\")\n}\n```\nThe ReDOS is mainly due to the sub-patterns `[[\\\\]()#;?]*` and `(?:;[-a-zA-Z\\\\d\\\\/#&.:=?%@~_]*)*`"
+              }
+            }
+          },
+          {
+            "createdAt": "2023-04-25T10:43:04Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "minimist"
+              },
+              "advisory": {
+                "description": "Minimist prior to 1.2.6 and 0.2.4 is vulnerable to Prototype Pollution via file `index.js`, function `setKey()` (lines 69-95)."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-07-11T11:42:44Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "semver"
+              },
+              "advisory": {
+                "description": "Versions of the package semver before 7.5.2 on the 7.x branch, before 6.3.1 on the 6.x branch, and all other versions before 5.7.2 are vulnerable to Regular Expression Denial of Service (ReDoS) via the function new Range, when untrusted user data is provided as a range."
+              }
+            }
+          },
+          {
+            "createdAt": "2023-10-10T01:51:11Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "fsevents"
+              },
+              "advisory": {
+                "description": "fsevents before 1.2.11 depends on the https://fsevents-binaries.s3-us-west-2.amazonaws.com URL, which might allow an adversary to execute arbitrary code if any JavaScript project (that depends on fsevents) distributes code that was obtained from that URL at a time when it was controlled by an adversary."
+              }
+            }
+          },
+          {
+            "createdAt": "2024-03-26T01:14:07Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "express"
+              },
+              "advisory": {
+                "description": "### Impact\n\nVersions of Express.js prior to 4.19.2 and pre-release alpha and beta versions before 5.0.0-beta.3 are affected by an open redirect vulnerability using malformed URLs.\n\nWhen a user of Express performs a redirect using a user-provided URL Express performs an encode [using `encodeurl`](https://github.com/pillarjs/encodeurl) on the contents before passing it to the `location` header. This can cause malformed URLs to be evaluated in unexpected ways by common redirect allow list implementations in Express applications, leading to an Open Redirect via bypass of a properly implemented allow list.\n\nThe main method impacted is `res.location()` but this is also called from within `res.redirect()`.\n\n### Patches\n\nhttps://github.com/expressjs/express/commit/0867302ddbde0e9463d0564fea5861feb708c2dd\nhttps://github.com/expressjs/express/commit/0b746953c4bd8e377123527db11f9cd866e39f94\n\nAn initial fix went out with `express@4.19.0`, we then patched a feature regression in `4.19.1` and added improved handling for the bypass in `4.19.2`.\n\n### Workarounds\n\nThe fix for this involves pre-parsing the url string with either `require('node:url').parse` or `new URL`. These are steps you can take on your own before passing the user input string to `res.location` or `res.redirect`.\n\n### References\n\nhttps://github.com/expressjs/express/pull/5539\nhttps://github.com/koajs/koa/issues/1800\nhttps://expressjs.com/en/4x/api.html#res.location"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-06-11T09:12:45Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "braces"
+              },
+              "advisory": {
+                "description": "The NPM package `braces` fails to limit the number of characters it can handle, which could lead to Memory Exhaustion. In `lib/parse.js,` if a malicious user sends \"imbalanced braces\" as input, the parsing will enter a loop, which will cause the program to start allocating heap memory without freeing it at any moment of the loop. Eventually, the JavaScript heap limit is reached, and the program will crash.\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-08-24T03:39:55Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "micromatch"
+              },
+              "advisory": {
+                "description": "The NPM package `micromatch` prior to version 4.0.8 is vulnerable to Regular Expression Denial of Service (ReDoS). The vulnerability occurs in `micromatch.braces()` in `index.js` because the pattern `.*` will greedily match anything. By passing a malicious payload, the pattern matching will keep backtracking to the input while it doesn't find the closing bracket. As the input size increases, the consumption time will also increase until it causes the application to hang or slow down. There was a merged fix but further testing shows the issue persisted prior to https://github.com/micromatch/micromatch/pull/266. This issue should be mitigated by using a safe pattern that won't start backtracking the regular expression due to greedy matching.\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-09-09T21:45:41Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "path-to-regexp"
+              },
+              "advisory": {
+                "description": "### Impact\n\nA bad regular expression is generated any time you have two parameters within a single segment, separated by something that is not a period (`.`). For example, `/:a-:b`.\n\n### Patches\n\nFor users of 0.1, upgrade to `0.1.10`. All other users should upgrade to `8.0.0`.\n\nThese versions add backtrack protection when a custom regex pattern is not provided:\n\n- [0.1.10](https://github.com/pillarjs/path-to-regexp/releases/tag/v0.1.10)\n- [1.9.0](https://github.com/pillarjs/path-to-regexp/releases/tag/v1.9.0)\n- [3.3.0](https://github.com/pillarjs/path-to-regexp/releases/tag/v3.3.0)\n- [6.3.0](https://github.com/pillarjs/path-to-regexp/releases/tag/v6.3.0)\n\nThey do not protect against vulnerable user supplied capture groups. Protecting against explicit user patterns is out of scope for old versions and not considered a vulnerability.\n\nVersion [7.1.0](https://github.com/pillarjs/path-to-regexp/releases/tag/v7.1.0) can enable `strict: true` and get an error when the regular expression might be bad.\n\nVersion [8.0.0](https://github.com/pillarjs/path-to-regexp/releases/tag/v8.0.0) removes the features that can cause a ReDoS.\n\n### Workarounds\n\nAll versions can be patched by providing a custom regular expression for parameters after the first in a single segment. As long as the custom regular expression does not match the text before the parameter, you will be safe. For example, change `/:a-:b` to `/:a-:b([^-/]+)`.\n\nIf paths cannot be rewritten and versions cannot be upgraded, another alternative is to limit the URL length. For example, halving the attack string improves performance by 4x faster.\n\n### Details\n\nUsing `/:a-:b` will produce the regular expression `/^\\/([^\\/]+?)-([^\\/]+?)\\/?$/`. This can be exploited by a path such as `/a${'-a'.repeat(8_000)}/a`. [OWASP](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS) has a good example of why this occurs, but the TL;DR is the `/a` at the end ensures this route would never match but due to naive backtracking it will still attempt every combination of the `:a-:b` on the repeated 8,000 `-a`.\n\nBecause JavaScript is single threaded and regex matching runs on the main thread, poor performance will block the event loop and can lead to a DoS. In local benchmarks, exploiting the unsafe regex will result in performance that is over 1000x worse than the safe regex. In a more realistic environment using Express v4 and 10 concurrent connections, this translated to average latency of ~600ms vs 1ms.\n\n### References\n\n* [OWASP](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS)\n* [Detailed blog post](https://blakeembrey.com/posts/2024-09-web-redos/)"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-09-10T18:37:13Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "body-parser"
+              },
+              "advisory": {
+                "description": "### Impact\n\nbody-parser <1.20.3 is vulnerable to denial of service when url encoding is enabled. A malicious actor using a specially crafted payload could flood the server with a large number of requests, resulting in denial of service.\n\n### Patches\n\nthis issue is patched in 1.20.3\n\n### References\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-09-10T23:37:16Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "serve-static"
+              },
+              "advisory": {
+                "description": "### Impact\n\npassing untrusted user input - even after sanitizing it - to `redirect()` may execute untrusted code\n\n### Patches\n\nthis issue is patched in serve-static 1.16.0\n\n### Workarounds\n\nusers are encouraged to upgrade to the patched version of express, but otherwise can workaround this issue by making sure any untrusted inputs are safe, ideally by validating them against an explicit allowlist\n\n### Details\n\nsuccessful exploitation of this vector requires the following:\n\n1. The attacker MUST control the input to response.redirect()\n1. express MUST NOT redirect before the template appears\n1. the browser MUST NOT complete redirection before:\n1. the user MUST click on the link in the template\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-09-10T23:46:01Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "send"
+              },
+              "advisory": {
+                "description": "### Impact\n\npassing untrusted user input - even after sanitizing it - to `SendStream.redirect()` may execute untrusted code\n\n### Patches\n\nthis issue is patched in send 0.19.0\n\n### Workarounds\n\nusers are encouraged to upgrade to the patched version of express, but otherwise can workaround this issue by making sure any untrusted inputs are safe, ideally by validating them against an explicit allowlist\n\n### Details\n\nsuccessful exploitation of this vector requires the following:\n\n1. The attacker MUST control the input to response.redirect()\n1. express MUST NOT redirect before the template appears\n1. the browser MUST NOT complete redirection before:\n1. the user MUST click on the link in the template\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-09-11T00:22:20Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "express"
+              },
+              "advisory": {
+                "description": "### Impact\n\nIn express <4.20.0, passing untrusted user input - even after sanitizing it - to `response.redirect()` may execute untrusted code\n\n### Patches\n\nthis issue is patched in express 4.20.0\n\n### Workarounds\n\nusers are encouraged to upgrade to the patched version of express, but otherwise can workaround this issue by making sure any untrusted inputs are safe, ideally by validating them against an explicit allowlist\n\n### Details\n\nsuccessful exploitation of this vector requires the following:\n\n1. The attacker MUST control the input to response.redirect()\n1. express MUST NOT redirect before the template appears\n1. the browser MUST NOT complete redirection before:\n1. the user MUST click on the link in the template\n"
+              }
+            }
+          },
+          {
+            "createdAt": "2024-10-04T22:54:22Z",
+            "dismissedAt": null,
+            "securityVulnerability": {
+              "package": {
+                "name": "cookie"
+              },
+              "advisory": {
+                "description": "### Impact\n\nThe cookie name could be used to set other fields of the cookie, resulting in an unexpected cookie value. For example, `serialize(\"userName=<script>alert('XSS3')</script>; Max-Age=2592000; a\", value)` would result in `\"userName=<script>alert('XSS3')</script>; Max-Age=2592000; a=test\"`, setting `userName` cookie to `<script>` and ignoring `value`.\n\nA similar escape can be used for `path` and `domain`, which could be abused to alter other fields of the cookie.\n\n### Patches\n\nUpgrade to 0.7.0, which updates the validation for `name`, `path`, and `domain`.\n\n### Workarounds\n\nAvoid passing untrusted or arbitrary values for these fields, ensure they are set by the application instead of user input.\n\n### References\n\n* https://github.com/jshttp/cookie/pull/167"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
